@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html> 
+	<head>
+		<meta name="x-blackberry-defaultHoverEffect" content="false" />
+		<link  rel="stylesheet" type="text/css" href="css/bbui-0.9.5.css"><link />
+		<script type="text/javascript" src="js/bbui-0.9.5.js"></script>
+		<script type="text/javascript" src="js/webworks-1.0.2.9.js"></script>
+		<link rel="stylesheet" href="css/BlackBerry-JQM.css" />
+		<script src="js/BlackBerry-JQM-all.js"></script>
+		<script type="text/javascript">
+			var rippleLoaded = false;
+			document.addEventListener('webworksready', function(e) {
+				if (rippleLoaded) return;
+				rippleLoaded = true;
+				bb.init();
+				bb.pushScreen('splash.htm', 'splash');
+			}, false);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
