@@ -4,12 +4,10 @@
 	    <title>BukketFull- Add item</title>
 	    <link rel="stylesheet" href="dist/BlackBerry-JQM-all.min.css" />
 	    <script src="dist/BlackBerry-JQM-all.min.js"></script>
+		<script src="js/BukketFull.js"></script>
 	    <style type="text/css">
 	    	
 	    </style>
-	    <script type="text/javascript">
-	    	
-	    </script>
 	</head>
 	<body>
 		<div data-role="page" data-theme="b">
@@ -17,7 +15,10 @@
 				<h1>Add Bukket Item</h1>
 			</div>
 			<div data-role="content">
-				<input type="text" name="text-input" placeholder="What do you want to do?" style="width: 93%;"/>
+				<center>
+					<input id="bucket-text" type="text" name="text-input" placeholder="What do you want to do?" style="width: 90%;"/>
+					<a id="confirm-add" data-role="button" data-icon="add" data-inline="true" data-theme="c">Confirm</a>
+				</center>
 			</div>
 			<div data-role="footer" data-position="fixed">
 				<div id="action-bar-area" data-role="actionbar">

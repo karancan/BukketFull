@@ -4,6 +4,7 @@
 	    <title>BukketFull</title>
 	    <link rel="stylesheet" href="dist/BlackBerry-JQM-all.min.css" />
 	    <script src="dist/BlackBerry-JQM-all.min.js"></script>
+		<script src="js/BukketFull.js"></script>
 	    <style type="text/css">
 	    	#main-title{
 	    		color: #ccff61;
@@ -14,8 +15,8 @@
 	    <script type="text/javascript">
 	    	$(document).bind("pageinit", function() {
 				setTimeout(function() {
-					window.location = "list.htm";
-				}, 10000);
+					$.mobile.changePage("list.htm", {transition:"slideup"});
+				}, 5000);
 			});
 	    </script>
 	</head>
