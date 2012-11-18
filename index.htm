@@ -1,11 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <html> 
 	<head>
-	    <title>BlackBerry 10 jQuery Mobile Test</title>
+	    <title>BukketFull</title>
 	    <link rel="stylesheet" href="dist/BlackBerry-JQM-all.min.css" />
-	    <link rel="stylesheet" href="css/bbui-0.9.5.css" />
 	    <script src="dist/BlackBerry-JQM-all.min.js"></script>
-	    <script src="js/bbui-0.9.5.js"></script>
 	    <style type="text/css">
 	    	#main-title{
 	    		color: #ccff61;
@@ -14,7 +12,9 @@
 	    	}
 	    </style>
 	    <script type="text/javascript">
-	    	
+	    	$(document).bind("pageinit", function() {
+				console.log("here");
+			});
 	    </script>
 	</head>
 	<body>
@@ -25,7 +25,7 @@
 			<div data-role="content" style="height: 70em;">
 				<div style="position: relative; top: 20em;">
 					<center>
-						<img src="images/logo.png" style="width: 35%;">
+						<img src="img/logo.png" style="width: 35%;">
 						<h1 id="main-title">BukketFull</h1>
 					</center>
 				</div>

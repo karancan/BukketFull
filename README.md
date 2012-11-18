@@ -1,4 +1,4 @@
 BukketFull
 ==========
 
-Bucket list app for the BB10 platform
+Bucket list app for BB10 devices
