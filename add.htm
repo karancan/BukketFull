@@ -16,16 +16,24 @@
 			</div>
 			<div data-role="content">
 				<center>
-					<input id="bucket-text" type="text" name="text-input" placeholder="What do you want to do?" style="width: 90%;"/>
-					<a id="confirm-add" data-role="button" data-icon="add" data-inline="true" data-theme="c">Confirm</a>
+					<div>
+						<input id="bucket-text" type="text" name="text-input" placeholder="What do you want to do?" style="width: 90%;"/>
+					</div>
+					<div>
+						<img src="img/app_photo.png" style="width: 10em;">
+					</div>
 				</center>
 			</div>
 			<div data-role="footer" data-position="fixed">
 				<div id="action-bar-area" data-role="actionbar">
 					<div data-role="back"></div>
-					<div data-role="action">
-						<img src="img/refresh.png" alt="Get a random suggestion" />
+					<div data-role="action" id="get-random">
+						<img src="img/refresh_white.png" alt="Get a random suggestion" />
 						<p>Randomize</p>
+					</div>
+					<div data-role="action" id="confirm-add">
+						<img src="img/plus_white.png" alt="Add this item" />
+						<p>Add</p>
 					</div>
 				</div>
 			</div>

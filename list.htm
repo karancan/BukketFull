@@ -9,15 +9,15 @@
 	    	
 	    </style>
 	</head>
-	<body onload="listItems()">
+	<body>
 		<div data-role="page" data-theme="b">
 			<div data-role="header" data-theme="a">			
 				<h1>BukketFull</h1>
 				<a href="add.htm" data-role="button" data-theme="c" data-icon="add" data-transition="flip">New</a>
 			</div>
 			<div data-role="content">
-				<ul data-filter="true" data-role="listview" data-divider-theme="b" id="bucket-item-list">
-					<li data-role="list-divider" role="heading" data-theme="a">
+				<ul data-filter="true" data-role="listview" data-divider-theme="b">
+					<li data-role="list-divider" role="heading" data-theme="a" id="bucket-item-list-incomplete">
 						<h1>Incomplete</h1>
 					</li>
 					<li><a href="view.htm" data-transition="flip">
