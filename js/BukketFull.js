@@ -2,6 +2,27 @@
 //AUTHOR: KARAN KHIANI | BUKKETFULL FOR BB10
 //==============================================================================================
 
+//Function called when the body loads- deals with main DB connection
+function initDB(){
+	console.log("initialize db");
+	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
+	console.log("db opened");
+	db.transaction(function (tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INT PRIMARY KEY AUTOINCREMENT, title TEXT, status INT)');
+		console.log("table created");
+		tx.executeSql('INSERT INTO items (title, status) VALUES ("test value", "0")');
+		console.log("inserted a row");
+		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
+			console.log("fetching item");
+			var len = results.rows.length, i;
+			for (i = 0; i < len; i++) {
+				console.log(results.rows.item(i).title);
+				console.log(results.rows.item(i).status);
+			}
+		});
+	});
+}
+
 //Function that lists all the existing items from localStorage
 function listItems(){
 	//$('<li><a href="view.htm" data-transition="flip"><img src="img/mask.png" alt="list thumbnail" style="padding: 0.2em;">Will this work</a></li>').insertAfter($('#bucket-item-list-incomplete'));
@@ -14,17 +35,6 @@ $("#confirm-add").live('click',function() {
 	if($('#bucket-text').val() == ""){
 		return;
 	}
-	
-	if (localStorage.getItem("numItems") == undefined){
-		localStorage.setItem("numItems", 1);
-	}
-	else{
-		numItems = localStorage.getItem("numItems");
-		numItems++;
-		localStorage.setItem("numItems", numItems);
-	}
-	var numItems = localStorage.getItem("numItems");
-	localStorage.setItem("item" + numItems, $('#bucket-text').val());
 	
 });
 
