@@ -76,7 +76,7 @@ $("#confirm-add").live('click',function() {
 	
 	//Error checking
 	if($('#bucket-text').val() == ""){
-		alert("You cannot do that!");
+		alert("You cannot leave that field blank.");
 		return;
 	}
 	
