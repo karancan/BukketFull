@@ -16,13 +16,11 @@ dbSuccess = function(tx, e) {
 		
 //Function called when the body loads- deals with main DB connection
 function initDB(){
-	console.log("initialize db");
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
-	console.log("db opened");
 	db.transaction(function (tx) {
-		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INT PRIMARY KEY AUTOINCREMENT, title TEXT, status INT)', [], dbSuccess, dbError);
+		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
 		console.log("table created");
-		tx.executeSql('INSERT INTO items (title, status) VALUES ("test value", "0")', [], dbSuccess, dbError););
+		tx.executeSql('INSERT INTO items (title, status) VALUES ("test value", "0")', [], dbSuccess, dbError);
 		console.log("inserted a row");
 		//Now that we have established whether the DB table exists, we can list all existing items
 		listItems();
@@ -31,12 +29,10 @@ function initDB(){
 
 //Function that lists all the existing items if any
 function listItems(){
-	console.log("In the list items function");
 	db.transaction(function (tx) {
-		console.log("999999999999");
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
-			console.log("fetching item");
-			console.log("results");
+			console.log("fetching items");
+			console.log(results);
 			var len = results.rows.length, i;
 			//Check if there are any items already- if yes then show them
 			for (i = 0; i < len; i++) {
