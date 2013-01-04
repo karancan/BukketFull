@@ -36,8 +36,7 @@ function clearAllItems(){
 function listItems(){
 	
 	//Let's first clear up the DOM so we can start fresh- TO BE COMPLETED
-	//Should we also move from index.html to list.html in here? - TO BE COMPLETED
-
+	
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
 			var len = results.rows.length, i;
@@ -55,6 +54,11 @@ function listItems(){
 			}
 		}, dbError);
 	});
+}
+
+//Functions that takes care of clearing the list DOM and refreshing it when appropriate
+function viewListItems(){
+	window.location = "list.htm";
 }
 
 //Function that runs when the user selects an existing item
@@ -80,6 +84,7 @@ $("#confirm-add").live('click',function() {
 	db.transaction(function (tx) {
 		tx.executeSql('INSERT INTO items (title, status) VALUES (?, ?)', [($('#bucket-text').val()),("0")], dbSuccess, dbError);
 		listItems();
+		viewListItems();
 	});
 });
 
