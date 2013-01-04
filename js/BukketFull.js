@@ -12,20 +12,37 @@ function initDB(){
 		console.log("table created");
 		tx.executeSql('INSERT INTO items (title, status) VALUES ("test value", "0")');
 		console.log("inserted a row");
+	});
+	//Now that we have established whether the DB table exists, we can list all existing items
+	listItems();
+}
+
+//Function that lists all the existing items if any
+function listItems(){
+	console.log("In the list items function");
+	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
 			console.log("fetching item");
+			console.log("results");
 			var len = results.rows.length, i;
+			//Check if there are any items already- if yes then show them
 			for (i = 0; i < len; i++) {
 				console.log(results.rows.item(i).title);
 				console.log(results.rows.item(i).status);
 			}
+			//Check if there are any items already- if not then show a message saying that there are none
 		});
 	});
 }
 
-//Function that lists all the existing items from localStorage
-function listItems(){
-	//$('<li><a href="view.htm" data-transition="flip"><img src="img/mask.png" alt="list thumbnail" style="padding: 0.2em;">Will this work</a></li>').insertAfter($('#bucket-item-list-incomplete'));
+//Function that runs when the user selects an existing item
+function selectItem(){
+	//Make the selected item the existing ITEM global object
+}
+
+//Function that is run when the user changes the completion status of a selected item
+function switchItemStatus(){
+	//Look at the existing status of the currently select ITEM global object
 }
 
 //Function that runs when the user is adding an item to the bucket list
@@ -33,7 +50,7 @@ $("#confirm-add").live('click',function() {
 	
 	//Error checking
 	if($('#bucket-text').val() == ""){
-		return;
+		alert("You cannot do that!");
 	}
 	
 });

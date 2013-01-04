@@ -8,7 +8,7 @@ BukketFull is an app for BB10 devices that allows a user to create, maintain and
 
 ## Credit
 
-Images: Coming soon
+Thanks to [shlyapnikova.deviantart.com](shlyapnikova.deviantart.com) for the icons/sprites.
 
 ## Tested On
 
