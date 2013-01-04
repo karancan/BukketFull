@@ -19,9 +19,8 @@ function initDB(){
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
 	db.transaction(function (tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
-		tx.executeSql('INSERT INTO items (title, status) VALUES ("test row", "0")', [], dbSuccess, dbError);
-		//Now that we have established whether the DB table exists, we can list all existing items
 		//clearAllItems(); //This line will be commented out unless we are testing and want to clear the table of items
+		//Now that we have established whether the DB table exists, we can list all existing items
 		listItems();
 	});
 }
@@ -35,6 +34,9 @@ function clearAllItems(){
 
 //Function that lists all the existing items if any
 function listItems(){
+	
+	//Let's first clear up the DOM so we can start fresh- TO BE COMPLETED
+
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
 			var len = results.rows.length, i;
@@ -48,7 +50,7 @@ function listItems(){
 				}
 			}
 			else{
-				//Check if there are any items already- if not then show a message saying that there are none
+				//Check if there are any items already- if not then show a message saying that there are none- TO BE COMPLETED
 			}
 		}, dbError);
 	});
@@ -56,12 +58,12 @@ function listItems(){
 
 //Function that runs when the user selects an existing item
 function selectItem(){
-	//Make the selected item the existing ITEM global object
+	//Make the selected item the existing ITEM global object- TO BE COMPLETED
 }
 
 //Function that is run when the user changes the completion status of a selected item
 function switchItemStatus(){
-	//Look at the existing status of the currently select ITEM global object
+	//Look at the existing status of the currently select ITEM global object- TO BE COMPLETED
 }
 
 //Function that runs when the user is adding an item to the bucket list
@@ -70,8 +72,14 @@ $("#confirm-add").live('click',function() {
 	//Error checking
 	if($('#bucket-text').val() == ""){
 		alert("You cannot do that!");
+		return;
 	}
 	
+	//Error checking done- need to insert the row
+	db.transaction(function (tx) {
+		tx.executeSql('INSERT INTO items (title, status) VALUES (?, ?)', [($('#bucket-text').val()),("0")], dbSuccess, dbError);
+		listItems();
+	});
 });
 
 //Function that gives the user random suggestions for bucket list items to add
