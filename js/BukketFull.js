@@ -19,11 +19,17 @@ function initDB(){
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
 	db.transaction(function (tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
-		console.log("table created");
-		tx.executeSql('INSERT INTO items (title, status) VALUES ("test value", "0")', [], dbSuccess, dbError);
-		console.log("inserted a row");
+		tx.executeSql('INSERT INTO items (title, status) VALUES ("test row", "0")', [], dbSuccess, dbError);
 		//Now that we have established whether the DB table exists, we can list all existing items
+		//clearAllItems(); //This line will be commented out unless we are testing and want to clear the table of items
 		listItems();
+	});
+}
+
+//Function that clears the existing items table- used for testing
+function clearAllItems(){
+	db.transaction(function (tx) {
+		tx.executeSql('DROP TABLE items', [], dbSuccess, dbError);
 	});
 }
 
@@ -31,15 +37,19 @@ function initDB(){
 function listItems(){
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
-			console.log("fetching items");
-			console.log(results);
 			var len = results.rows.length, i;
+			console.log(len);
 			//Check if there are any items already- if yes then show them
-			for (i = 0; i < len; i++) {
-				console.log(results.rows.item(i).title);
-				console.log(results.rows.item(i).status);
+			if (len > 0) {
+				for (i = 0; i < len; i++) {
+					console.log(results.rows.item(i).id);
+					console.log(results.rows.item(i).title);
+					console.log(results.rows.item(i).status);
+				}
 			}
-			//Check if there are any items already- if not then show a message saying that there are none
+			else{
+				//Check if there are any items already- if not then show a message saying that there are none
+			}
 		}, dbError);
 	});
 }
