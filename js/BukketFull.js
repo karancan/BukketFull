@@ -36,6 +36,7 @@ function clearAllItems(){
 function listItems(){
 	
 	//Let's first clear up the DOM so we can start fresh- TO BE COMPLETED
+	//Should we also move from index.html to list.html in here? - TO BE COMPLETED
 
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
