@@ -59,6 +59,8 @@ function listItems(){
 				}
 				//Prepare the end of list markup and append it to the body-TBC
 				var body_content_end = '</ul>';
+				var all_markup = body_content_start.concat(body_content_incomplete, body_content_complete, body_content_end);
+				$('#list-body').html(all_markup);
 			}
 			//There are no existing items, show a friendly message
 			else{
