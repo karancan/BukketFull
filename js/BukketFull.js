@@ -42,7 +42,7 @@ function listItems(){
 			//There are existing items- show them all
 			if (len > 0) {
 				//Prepare the start of the list markup
-				var body_content_start = '<ul data-filter="true" data-role="listview" data-divider-theme="b">';
+				var body_content_start = '<ul id="list-body-list" data-filter="true" data-role="listview" data-divider-theme="b">';
 				var body_content_incomplete = '<li data-role="list-divider" role="heading" data-theme="a" id="bucket-item-list-incomplete"><h1>Incomplete</h1></li>';
 				var body_content_complete = '<li data-role="list-divider" role="heading" data-theme="a"><h1>Complete</h1></li>';
 				for (i = 0; i < len; i++) {
@@ -59,6 +59,11 @@ function listItems(){
 				var body_content_end = '</ul>';
 				var all_markup = body_content_start.concat(body_content_incomplete, body_content_complete, body_content_end);
 				$('#list-body').html(all_markup);
+				
+				//Note: The next three line attempt to fix the styling bug where the lsitview doesn't render properly
+				//$('#list-body-list').listview('refresh');
+				//$('#list-body-list').trigger('create');
+				//$("#list-body").find(":jqmData(role=listview)").listview();
 			}
 			//There are no existing items, show a friendly message
 			else{
@@ -75,7 +80,8 @@ function viewListItems(){
 
 //Function that runs when the user selects an existing item
 function selectItem(){
-	//Make the selected item the existing ITEM global object- TO BE COMPLETED
+	//Make the selected item the existing ITEM global object
+	
 }
 
 //Function that is run when the user changes the completion status of a selected item
