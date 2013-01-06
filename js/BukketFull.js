@@ -35,8 +35,6 @@ function clearAllItems(){
 //Function that lists all the existing items if any
 function listItems(){
 	
-	//Let's first clear up the DOM so we can start fresh-TBC
-	
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
 			var len = results.rows.length, i;
@@ -48,16 +46,16 @@ function listItems(){
 				var body_content_incomplete = '<li data-role="list-divider" role="heading" data-theme="a" id="bucket-item-list-incomplete"><h1>Incomplete</h1></li>';
 				var body_content_complete = '<li data-role="list-divider" role="heading" data-theme="a"><h1>Complete</h1></li>';
 				for (i = 0; i < len; i++) {
-					//Prepare the list of incomplete items-TBC
+					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
 						body_content_incomplete += '<li><a name="' + results.rows.item(i).id + '" href="view.htm" data-transition="flip"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</a></li>';
 					}
-					//Prepare the list of completed items-TBC
+					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
 						body_content_complete += '<li><a name="' + results.rows.item(i).id + '" href="view.htm" data-transition="flip"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</a></li>';
 					}
 				}
-				//Prepare the end of list markup and append it to the body-TBC
+				//Prepare the end of list markup and append it to the body
 				var body_content_end = '</ul>';
 				var all_markup = body_content_start.concat(body_content_incomplete, body_content_complete, body_content_end);
 				$('#list-body').html(all_markup);
