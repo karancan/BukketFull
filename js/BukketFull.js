@@ -35,22 +35,34 @@ function clearAllItems(){
 //Function that lists all the existing items if any
 function listItems(){
 	
-	//Let's first clear up the DOM so we can start fresh- TO BE COMPLETED
+	//Let's first clear up the DOM so we can start fresh-TBC
 	
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
 			var len = results.rows.length, i;
 			console.log(len);
-			//Check if there are any items already- if yes then show them
+			//There are existing items- show them all
 			if (len > 0) {
+				//Prepare the start of the list markup
+				var body_content_start = '<ul data-filter="true" data-role="listview" data-divider-theme="b">';
+				var body_content_incomplete = '<li data-role="list-divider" role="heading" data-theme="a" id="bucket-item-list-incomplete"><h1>Incomplete</h1></li>';
+				var body_content_complete = '<li data-role="list-divider" role="heading" data-theme="a"><h1>Complete</h1></li>';
 				for (i = 0; i < len; i++) {
-					console.log(results.rows.item(i).id);
-					console.log(results.rows.item(i).title);
-					console.log(results.rows.item(i).status);
+					//Prepare the list of incomplete items-TBC
+					if (results.rows.item(i).status == "0"){
+						body_content_incomplete += '<li><a name="' + results.rows.item(i).id + '" href="view.htm" data-transition="flip"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</a></li>';
+					}
+					//Prepare the list of completed items-TBC
+					if (results.rows.item(i).status == "1"){
+						body_content_complete += '<li><a name="' + results.rows.item(i).id + '" href="view.htm" data-transition="flip"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</a></li>';
+					}
 				}
+				//Prepare the end of list markup and append it to the body-TBC
+				var body_content_end = '</ul>';
 			}
+			//There are no existing items, show a friendly message
 			else{
-				//Check if there are any items already- if not then show a message saying that there are none- TO BE COMPLETED
+				$('#list-body').html('<center><div style="height: 100%; color: #263849; padding: 2em; font-size: 4em;">Wow! Your list is all empty.</br> You must find the world really boring...</div></center>');
 			}
 		}, dbError);
 	});
