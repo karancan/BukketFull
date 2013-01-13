@@ -10,17 +10,16 @@ selectedItem.reset = function(){
 	selectedItem.id = "";
 	selectedItem.title = "";
 	selectedItem.status = "";
-	console.log (selectedItem);
 }
 
 //An error callback function- used for troubleshooting
 dbError = function(tx, e) {
-	console.log("ERROR: " + e.message);
+	console.log("DB Transaction ERROR: " + e.message);
 }
 
 //A success callback function- used for troubleshooting
 dbSuccess = function(tx, e) {
-	console.log("Success: " + e.message);
+	console.log("DB Transaction Success: " + e.message);
 }
 		
 //Function called when the body loads- deals with main DB connection
@@ -94,18 +93,34 @@ $(".item-selector").live('click',function() {
 		tx.executeSql('SELECT * FROM items WHERE id=?', [selectedItem.id], function (tx, results) {
 			selectedItem.title = results.rows.item(0).title;
 			selectedItem.status = results.rows.item(0).status;
-			alert(selectedItem.title);
 			$('#bubble').html(selectedItem.title);
 			window.location = "view.htm";
 		}, dbError);	
 	});
-	
+});
+
+//Function that is run when the user chooses to share the selected item
+$('#selected-item-share').live('click',function() {
+	alert("sharE");
 });
 
 //Function that is run when the user changes the completion status of a selected item
-function switchItemStatus(){
-	//Look at the existing status of the currently select ITEM global object- TO BE COMPLETED
-}
+$('#selected-item-switch').live('click',function() {
+	alert("switch");
+});
+
+//Function that is run when the user deletes the selected item
+$('#selected-item-delete').live('click',function() {
+	var double_check = confirm("Are you sure you want to delete this from your list?");
+	if (double_check == true){
+		initDB();
+		db.transaction(function (tx) {
+			tx.executeSql('DELETE FROM items WHERE id=?', [selectedItem.id], dbSuccess, dbError);
+			listItems();
+			viewListItems();	
+		});
+	}
+});
 
 //Function that runs when the user is adding an item to the bucket list
 $("#confirm-add").live('click',function() {
