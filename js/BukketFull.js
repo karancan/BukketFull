@@ -5,6 +5,14 @@
 var db;
 selectedItem = new Object();
 
+//A function that clears the selectedItem object
+selectedItem.reset = function(){
+	selectedItem.id = "";
+	selectedItem.title = "";
+	selectedItem.status = "";
+	console.log (selectedItem);
+}
+
 //An error callback function- used for troubleshooting
 dbError = function(tx, e) {
 	console.log("ERROR: " + e.message);
@@ -38,6 +46,7 @@ function listItems(){
 	
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
+			selectedItem.reset();
 			var len = results.rows.length, i;
 			//There are existing items- show them all
 			if (len > 0) {
@@ -48,11 +57,11 @@ function listItems(){
 				for (i = 0; i < len; i++) {
 					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
-						body_content_incomplete += '<li class="item-selector"><a name="' + results.rows.item(i).id + '" href="view.htm" data-transition="flip"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</a></li>';
+						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</li>';
 					}
 					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
-						body_content_complete += '<li class="item-selector"><a name="' + results.rows.item(i).id + '" href="view.htm" data-transition="flip"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</a></li>';
+						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</li>';
 					}
 				}
 				//Prepare the end of list markup and append it to the body
@@ -80,14 +89,14 @@ function viewListItems(){
 
 //Function that runs when the user selects an existing item
 $(".item-selector").live('click',function() {
-
-	selectedItem.id = $(this).children(":first").attr('name');
+	selectedItem.id = $(this).attr('name');
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items WHERE id=?', [selectedItem.id], function (tx, results) {
-			//Make the selected item the existing ITEM global object
 			selectedItem.title = results.rows.item(0).title;
 			selectedItem.status = results.rows.item(0).status;
-			
+			alert(selectedItem.title);
+			$('#bubble').html(selectedItem.title);
+			window.location = "view.htm";
 		}, dbError);	
 	});
 	
