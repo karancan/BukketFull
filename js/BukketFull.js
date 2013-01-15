@@ -99,11 +99,6 @@ $(".item-selector").live('click',function() {
 	});
 });
 
-//Function that is run when the user chooses to share the selected item
-$('#selected-item-share').live('click',function() {
-	alert("sharE");
-});
-
 //Function that is run when the user changes the completion status of a selected item
 $('#selected-item-switch').live('click',function() {
 	alert("switch");
