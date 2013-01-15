@@ -141,6 +141,9 @@ $("#confirm-add").live('click',function() {
 
 //Function that gives the user random suggestions for bucket list items to add
 $("#get-random").live('click',function() {
-	var randomItems = new Array("Travel to Argentina", "Eat African cuisine", "Hike the Grand Canyon", "Climb Mount Everest", "Dive the Great Barrier Reef", "Visit the Taj Mahal", "Throw a coin in the Trevi Fountain");
+	var randomItems = new Array("Travel to Argentina", "Eat African cuisine", "Hike the Grand Canyon", "Climb Mount Everest", 
+								"Dive the Great Barrier Reef", "Visit the Taj Mahal", "Throw a coin in the Trevi Fountain",
+								"Swim with Dolphins", "Walk the Great Wall of China", "Climb Mt. Kilimanjaro", "Ski the Alps",
+								"Backpack across Europe", "Visit the Palm Islands in Dubai");
 	$('#bucket-text').val(randomItems[Math.floor(Math.random()*randomItems.length)]);
 });
