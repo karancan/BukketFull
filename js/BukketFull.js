@@ -83,7 +83,7 @@ function listItems(){
 
 //Functions that takes care of clearing the list DOM and refreshing it when appropriate
 function viewListItems(){
-	window.location = "list.htm";
+	window.location = "index.htm";
 }
 
 //Function that runs when the user selects an existing item
