@@ -163,6 +163,6 @@ $("#get-random").live('click',function() {
 	var randomItems = new Array("Travel to Argentina", "Eat African cuisine", "Hike the Grand Canyon", "Climb Mount Everest", 
 								"Dive the Great Barrier Reef", "Visit the Taj Mahal", "Throw a coin in the Trevi Fountain",
 								"Swim with Dolphins", "Walk the Great Wall of China", "Climb Mt. Kilimanjaro", "Ski the Alps",
-								"Backpack across Europe", "Visit the Palm Islands in Dubai");
+								"Backpack across Europe", "Visit the Palm Islands in Dubai", "Snowboard in Whistler, BC", "Make a million dollars");
 	$('#bucket-text').val(randomItems[Math.floor(Math.random()*randomItems.length)]);
 });
