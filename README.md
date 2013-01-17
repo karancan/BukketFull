@@ -1,10 +1,12 @@
 BukketFull
 ==========
 _**Current status: in development**_ 
+Version 1.0: expected Jan. 21, 2013
+Version 1.1: expected Feb. 11, 2013
 
 ## Description
 
-BukketFull is an app for BB10 devices that allows a user to create, maintain and share a bucketlist.
+A "bucket list" is a list of things that one would hope to do before they die. BukketFull is an app for BlackBerry 10 platform that allows a user to create, maintain and share their bucket list.
 
 ## Credit
 
@@ -13,6 +15,7 @@ Thanks to [http://www.iconfinder.com/icondetails/83180/128/coffee_facebook_mug_i
 ## Tested On
 
 * BlackBerry Dev Alpha
+* Ripple Emulator
 
 ## Contributing
 

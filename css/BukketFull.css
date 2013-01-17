@@ -1,5 +1,10 @@
-html, body{
-	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica !important;
+body, html {
+	padding:0;
+	margin:0;
+	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica;
+	overflow:visible;
+	user-select: none;
+	-webkit-user-select: none;
 }
 #main-title{
 	color: #ffc14e;

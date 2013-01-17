@@ -6,7 +6,7 @@ var db;
 selectedItem = new Object();
 
 //A function that clears the selectedItem object
-selectedItem.reset = function(){
+function selectedItemReset(){
 	selectedItem.id = "";
 	selectedItem.title = "";
 	selectedItem.status = "";
@@ -24,6 +24,8 @@ dbSuccess = function(tx, e) {
 		
 //Function called when the body loads- deals with main DB connection
 function initDB(){
+	console.log("Logging selectedItem object");
+	console.log(selectedItem);
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
 	db.transaction(function (tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
@@ -45,7 +47,7 @@ function listItems(){
 	
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT * FROM items', [], function (tx, results) {
-			selectedItem.reset();
+			//selectedItemReset();
 			var len = results.rows.length, i;
 			//There are existing items- show them all
 			if (len > 0) {
@@ -99,9 +101,35 @@ $(".item-selector").live('click',function() {
 	});
 });
 
-//Function that is run when the user changes the completion status of a selected item
-$('#selected-item-switch').live('click',function() {
-	alert("switch");
+//This function takes cares of some UI manipulation that needs to be done once the view page has been loaded
+function postItemSelection(){
+	console.log("post item selection");
+	console.log("View page loaded");
+	console.log(selectedItem);
+	if (selectedItem.status == "1"){
+		$('#selected-item-mark-complete').hide();
+	}
+	if (selectedItem.status == "0"){
+		$('#selected-item-mark-incomplete').hide();
+	}
+}
+
+//Function that is run when the user marks the selected item as complete
+$('#selected-item-mark-complete').live('click',function() {
+	db.transaction(function (tx) {
+		tx.executeSql('UPDATE items SET status="1" WHERE id=?', [selectedItem.id], dbSuccess, dbError);
+		$('#selected-item-mark-complete').hide();
+		$('#selected-item-mark-incomplete').fadeIn();
+	});
+});
+
+//Function that is run when the user marks the selected item as incomplete
+$('#selected-item-mark-incomplete').live('click',function() {
+	db.transaction(function (tx) {
+		tx.executeSql('UPDATE items SET status="0" WHERE id=?', [selectedItem.id], dbSuccess, dbError);
+		$('#selected-item-mark-incomplete').hide();
+		$('#selected-item-mark-complete').fadeIn();
+	});
 });
 
 //Function that is run when the user deletes the selected item
