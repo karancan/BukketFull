@@ -54,19 +54,32 @@ function listItems(){
 				var body_content_start = '<ul id="list-body-list" data-filter="true" data-role="listview" data-divider-theme="b">';
 				var body_content_incomplete = '<li data-role="list-divider" role="heading" data-theme="a" id="bucket-item-list-incomplete"><h1>Incomplete</h1></li>';
 				var body_content_complete = '<li data-role="list-divider" role="heading" data-theme="a"><h1>Complete</h1></li>';
+				var count_complete = 0;
+				var count_incomplete = 0;
 				for (i = 0; i < len; i++) {
 					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
+						count_incomplete ++; 
 						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + results.rows.item(i).title + '</li>';
 					}
 					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
+						count_complete ++;
 						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + results.rows.item(i).title + '</li>';
 					}
 				}
 				//Prepare the end of list markup and append it to the body
 				var body_content_end = '</ul>';
-				var all_markup = body_content_start.concat(body_content_incomplete, body_content_complete, body_content_end);
+				//Injected code will depend on whether there are incomplete items, complete items or both
+				if ((count_incomplete > 0) && (count_complete == 0)){
+					var all_markup = body_content_start.concat(body_content_incomplete, body_content_end);
+				}
+				else if ((count_complete > 0) && (count_incomplete == 0)){
+					var all_markup = body_content_start.concat(body_content_complete, body_content_end);
+				}
+				else{
+					var all_markup = body_content_start.concat(body_content_incomplete, body_content_complete, body_content_end);
+				}
 				$('#list-body').html(all_markup);
 				$("#list-body").find(":jqmData(role=listview)").listview();
 			}
