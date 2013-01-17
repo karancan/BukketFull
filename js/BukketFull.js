@@ -69,11 +69,7 @@ function listItems(){
 				var body_content_end = '</ul>';
 				var all_markup = body_content_start.concat(body_content_incomplete, body_content_complete, body_content_end);
 				$('#list-body').html(all_markup);
-				
-				//Note: The next three line attempt to fix the styling bug where the lsitview doesn't render properly
-				//$('#list-body-list').listview('refresh');
-				//$('#list-body-list').trigger('create');
-				//$("#list-body").find(":jqmData(role=listview)").listview();
+				$("#list-body").find(":jqmData(role=listview)").listview();
 			}
 			//There are no existing items, show a friendly message
 			else{
