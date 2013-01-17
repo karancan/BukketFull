@@ -60,12 +60,12 @@ function listItems(){
 					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
 						count_incomplete ++; 
-						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + results.rows.item(i).title + '</li>';
+						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 22 ? (results.rows.item(i).title).substring(0, 22) + "..." : results.rows.item(i).title) + '</li>';
 					}
 					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
 						count_complete ++;
-						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + results.rows.item(i).title + '</li>';
+						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 22 ? (results.rows.item(i).title).substring(0, 22) + "..." : results.rows.item(i).title) + '</li>';
 					}
 				}
 				//Prepare the end of list markup and append it to the body
