@@ -30,7 +30,6 @@ function initDB(){
 	db.transaction(function (tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
 		//clearAllItems(); //This line will be commented out unless we are testing and want to clear the table of items
-		//Now that we have established whether the DB table exists, we can list all existing items
 		listItems();
 	});
 }
@@ -58,11 +57,11 @@ function listItems(){
 				for (i = 0; i < len; i++) {
 					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
-						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</li>';
+						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + results.rows.item(i).title + '</li>';
 					}
 					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
-						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail" style="padding-left: 0.1em;">' + results.rows.item(i).title + '</li>';
+						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + results.rows.item(i).title + '</li>';
 					}
 				}
 				//Prepare the end of list markup and append it to the body
@@ -73,7 +72,7 @@ function listItems(){
 			}
 			//There are no existing items, show a friendly message
 			else{
-				$('#list-body').html('<center><div style="height: 100%; color: #263849; padding: 2em; font-size: 4em;">Wow! Your list is all empty.</br> You must find the world really boring...</div></center>');
+				$('#list-body').html('<center><div id="list-empty-message">Wow! Your list is all empty.</br> You must find this world of ours really boring...</div></center>');
 			}
 		}, dbError);
 	});
@@ -146,7 +145,7 @@ $("#confirm-add").live('click',function() {
 	
 	//Error checking
 	if($('#bucket-text').val() == ""){
-		alert("You cannot leave that field blank.");
+		alert("You must enter a description.");
 		return;
 	}
 	
@@ -163,6 +162,7 @@ $("#get-random").live('click',function() {
 	var randomItems = new Array("Travel to Argentina", "Eat African cuisine", "Hike the Grand Canyon", "Climb Mount Everest", 
 								"Dive the Great Barrier Reef", "Visit the Taj Mahal", "Throw a coin in the Trevi Fountain",
 								"Swim with Dolphins", "Walk the Great Wall of China", "Climb Mt. Kilimanjaro", "Ski the Alps",
-								"Backpack across Europe", "Visit the Palm Islands in Dubai", "Snowboard in Whistler, BC", "Make a million dollars");
+								"Backpack across Europe", "Visit the Palm Islands in Dubai", "Snowboard in Whistler, BC", 
+								"Make a million dollars");
 	$('#bucket-text').val(randomItems[Math.floor(Math.random()*randomItems.length)]);
 });
