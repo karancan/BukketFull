@@ -1,47 +1,35 @@
-<!DOCTYPE html>
-<html> 
-	<head>
-	    <title>BukketFull- Add item</title>
-	    <link rel="stylesheet" href="dist/BlackBerry-JQM-all.min.css" />
-		<link rel="stylesheet" href="css/BukketFull.css" />
-	    <script src="dist/BlackBerry-JQM-all.min.js"></script>
-		<script src="js/BukketFull.js"></script>
-	</head>
-	<body>
-		<div data-role="page" data-theme="b">
-			<div data-role="header" data-theme="a" data-position="fixed"> 
-				<h1 class="header-title"><img class="header-icon" src="img/icon_small.png">BukketFull</h1>
+<div data-role="page" data-theme="b">
+	<div data-role="header" data-theme="a" data-position="fixed"> 
+		<h1 class="header-title"><img class="header-icon" src="img/icon_small.png">BukketFull</h1>
+	</div>
+	<div data-role="content">
+		<center>
+			<div>
+				<h2>Add a new item to your list</h2>
 			</div>
-			<div data-role="content">
-				<center>
-					<div>
-						<h2>Add a new item to your list</h2>
-					</div>
-					<div>
-						<input maxlength="30" id="bucket-text" type="text" name="text-input" placeholder="Description" style="width: 90%;"/>
-					</div>
-					<br>
-					<div>
-						<h2>Add an image to go with it</h2>
-					</div>
-					<div>
-						<img src="img/app_photo.png" style="width: 10em;">
-					</div>
-				</center>
+			<div>
+				<input maxlength="30" id="bucket-text" type="text" name="text-input" placeholder="Description" style="width: 90%;"/>
 			</div>
-			<div data-role="footer" data-position="fixed">
-				<div id="action-bar-area" data-role="actionbar">
-					<div data-role="back"></div>
-					<div data-role="action" id="get-random">
-						<img src="img/random.png">
-						<p>Randomize</p>
-					</div>
-					<div data-role="action" id="confirm-add">
-						<img src="img/save.png">
-						<p>Add</p>
-					</div>
-				</div>
+			<br>
+			<div>
+				<h2>Add an image to go with it</h2>
+			</div>
+			<div>
+				<img src="img/app_photo.png" style="width: 10em;">
+			</div>
+		</center>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div id="action-bar-area" data-role="actionbar">
+			<div data-role="back"></div>
+			<div data-role="action" id="get-random">
+				<img src="img/random.png">
+				<p>Randomize</p>
+			</div>
+			<div data-role="action" id="confirm-add">
+				<img src="img/save.png">
+				<p>Add</p>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</div>

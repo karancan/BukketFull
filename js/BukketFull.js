@@ -24,8 +24,6 @@ dbSuccess = function(tx, e) {
 		
 //Function called when the body loads- deals with main DB connection
 function initDB(){
-	console.log("Logging selectedItem object");
-	console.log(selectedItem);
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
 	db.transaction(function (tx) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
@@ -110,11 +108,14 @@ $(".item-selector").live('click',function() {
 });
 
 //This function takes cares of some UI manipulation that needs to be done once the view page has been loaded
-$("div[id*='view-page']").live('pageshow', function(event, ui) { 
+$("div[id*='view-page']").live('pageshow', function(event, ui) {
+	$('#bubble').html(selectedItem.title);
 	if (selectedItem.status == "1"){
+		$('#bubble').addClass("complete");
 		$('#selected-item-mark-complete').hide();
 	}
 	if (selectedItem.status == "0"){
+		$('#bubble').addClass("incomplete");
 		$('#selected-item-mark-incomplete').hide();
 	}
 });

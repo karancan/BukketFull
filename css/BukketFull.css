@@ -45,8 +45,10 @@ p#bubble{
 	position: relative;
 	padding: 15px;
 	margin: 0.5em;
-	font-size: 5em;
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
+	font-size: 5.5em;
+	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica ;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#00e400), to(#009800)) !important;
+	text-shadow: 0px 0px 3px rgba(150, 150, 150, 1);
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -58,13 +60,7 @@ p#bubble::after {
 	right: 50px;
 	border-width: 75px 75px 0;
 	border-style: solid;
-	border-color: #f3961c transparent;
+	border-color: #009800 transparent;
 	display: block;
 	width: 0;
-}
-.complete{
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#00e400), to(#009800)) !important;
-}
-.incomplete{
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#ff4f4f), to(#d80000)) !important;
 }
