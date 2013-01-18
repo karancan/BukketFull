@@ -126,6 +126,7 @@ $('#selected-item-mark-complete').live('click',function() {
 		tx.executeSql('UPDATE items SET status="1" WHERE id=?', [selectedItem.id], dbSuccess, dbError);
 		$('#selected-item-mark-complete').hide();
 		$('#selected-item-mark-incomplete').fadeIn();
+		listItems();
 	});
 });
 
@@ -135,6 +136,7 @@ $('#selected-item-mark-incomplete').live('click',function() {
 		tx.executeSql('UPDATE items SET status="0" WHERE id=?', [selectedItem.id], dbSuccess, dbError);
 		$('#selected-item-mark-incomplete').hide();
 		$('#selected-item-mark-complete').fadeIn();
+		listItems();
 	});
 });
 
