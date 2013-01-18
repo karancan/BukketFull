@@ -9,12 +9,22 @@ body, html {
 input{
 	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica !important;
 	letter-spacing: 3px;
+	border: 5px solid #263849 !important;
+}
+select, option{
+	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica !important;
+	letter-spacing: 3px;
 }
 h2{
 	font-size: 3em;
 	color: #263849;
 	text-shadow: 0px 0px 3px rgba(150, 150, 150, 1);
 	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica;
+}
+.image-options{
+	color: #263849 !important;
+	text-shadow: 0px 0px 3px rgba(150, 150, 150, 1) !important;
+	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica !important;
 }
 #main-title{
 	color: #ffc14e;
@@ -45,6 +55,7 @@ p#bubble{
 	position: relative;
 	padding: 15px;
 	margin: 0.5em;
+	color: white;
 	font-size: 5.5em;
 	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica ;
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#00e400), to(#009800)) !important;
