@@ -91,7 +91,7 @@ function listItems(){
 
 //Functions that takes care of clearing the list DOM and refreshing it when appropriate
 function viewListItems(){
-	window.location = "index.htm";
+	$.mobile.changePage( "index.htm", { transition: "flip", type: "get"} );
 }
 
 //Function that runs when the user selects an existing item
@@ -111,11 +111,9 @@ $(".item-selector").live('click',function() {
 $("div[id*='view-page']").live('pageshow', function(event, ui) {
 	$('#bubble').html(selectedItem.title);
 	if (selectedItem.status == "1"){
-		$('#bubble').addClass("complete");
 		$('#selected-item-mark-complete').hide();
 	}
 	if (selectedItem.status == "0"){
-		$('#bubble').addClass("incomplete");
 		$('#selected-item-mark-incomplete').hide();
 	}
 });
