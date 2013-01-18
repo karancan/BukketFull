@@ -1,8 +1,8 @@
 BukketFull
 ==========
 _**Current status: in development**_ 
-Version 1.0: expected Jan. 21, 2013
-Version 1.1: expected Feb. 11, 2013
+_**Version 1.0: expected Jan. 21, 2013**_
+_**Version 1.1: expected Feb. 11, 2013**_
 
 ## Description
 

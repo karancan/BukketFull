@@ -104,23 +104,20 @@ $(".item-selector").live('click',function() {
 			selectedItem.title = results.rows.item(0).title;
 			selectedItem.status = results.rows.item(0).status;
 			$('#bubble').html(selectedItem.title);
-			window.location = "view.htm";
+			$.mobile.changePage( "view.htm", { transition: "flip", type: "get"} );
 		}, dbError);	
 	});
 });
 
 //This function takes cares of some UI manipulation that needs to be done once the view page has been loaded
-function postItemSelection(){
-	console.log("post item selection");
-	console.log("View page loaded");
-	console.log(selectedItem);
+$("div[id*='view-page']").live('pageshow', function(event, ui) { 
 	if (selectedItem.status == "1"){
 		$('#selected-item-mark-complete').hide();
 	}
 	if (selectedItem.status == "0"){
 		$('#selected-item-mark-incomplete').hide();
 	}
-}
+});
 
 //Function that is run when the user marks the selected item as complete
 $('#selected-item-mark-complete').live('click',function() {

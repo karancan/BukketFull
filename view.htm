@@ -1,45 +1,33 @@
-<!DOCTYPE html>
-<html> 
-	<head>
-	    <title>BukketFull- View item</title>
-	    <link rel="stylesheet" href="dist/BlackBerry-JQM-all.min.css" />
-		<link rel="stylesheet" href="css/BukketFull.css" />
-	    <script src="dist/BlackBerry-JQM-all.min.js"></script>
-		<script src="js/BukketFull.js"></script>
-	</head>
-	<body onload="postItemSelection()">
-		<div data-role="page" data-theme="b">
-			<div data-role="header" data-theme="a" data-position="fixed"> 
-				<h1 class="header-title"><img class="header-icon" src="img/icon_small.png">BukketFull</h1>
+<div data-role="page" id="view-page" data-theme="b">
+	<div data-role="header" data-theme="a" data-position="fixed"> 
+		<h1 class="header-title"><img class="header-icon" src="img/icon_small.png">BukketFull</h1>
+	</div>
+	<div data-role="content">
+		<p id="bubble">Some text here, more text here</p>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div id="action-bar-area" data-role="actionbar">
+			<div data-role="back"></div>
+			<div data-role="action" id="selected-item-mark-complete">
+				<img src="img/mark_complete.png"/>
+				<p>Complete</p>
 			</div>
-			<div data-role="content">
-				<p id="bubble">Some text here, more text here</p>
+			<div data-role="action" id="selected-item-mark-incomplete">
+				<img src="img/mark_incomplete.png"/>
+				<p>Incomplete</p>
 			</div>
-			<div data-role="footer" data-position="fixed">
-				<div id="action-bar-area" data-role="actionbar">
-					<div data-role="back"></div>
-					<div data-role="action" id="selected-item-mark-complete">
-						<img src="img/mark_complete.png"/>
-						<p>Complete</p>
-					</div>
-					<div data-role="action" id="selected-item-mark-incomplete">
-						<img src="img/mark_incomplete.png"/>
-						<p>Incomplete</p>
-					</div>
-					<div data-role="action">
-						<img src="img/share.png"/>
-						<p>Share</p>
-					</div>
-					<div data-role="action" id="selected-item-mark-incomplete">
-						<img src="img/share_bbm.png"/>
-						<p>BBM</p>
-					</div>
-					<div data-role="action" id="selected-item-delete">
-						<img src="img/delete.png" alt="Delete item" />
-						<p>Delete</p>
-					</div>
-				</div>
+			<div data-role="action">
+				<img src="img/share.png"/>
+				<p>Share</p>
+			</div>
+			<div data-role="action" id="selected-item-mark-incomplete">
+				<img src="img/share_bbm.png"/>
+				<p>BBM</p>
+			</div>
+			<div data-role="action" id="selected-item-delete">
+				<img src="img/delete.png" alt="Delete item" />
+				<p>Delete</p>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</div>
