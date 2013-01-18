@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:rim="http://www.blackberry.com/ns/widgets" id="bbUISamples" version="0.9.1.1" rim:header="RIM-Widget:rim/widget" xmlns="http://www.w3.org/ns/widgets">
-  <rim:navigation mode="focus" />
-  <name>BukketFull</name>
-  <description>A bucketlist app that allows you to create and maintain your bucket lists.</description>
-  <author href="https://github.com/karancan">Karan Khiani</author>
-  <icon src="img\icon.png" />
-  <icon src="img\icon.png" rim:hover="true" />
-  <content src="index.htm" />
-  <access uri="http://chart.apis.google.com" subdomains="true" />
-  <feature id="blackberry.push" />
-  <feature id="blackberry.ui.dialog"/>
-  <feature id="blackberry.identity" />
-  <feature id="blackberry.app" />
+	<rim:navigation mode="focus" />
+	<name>BukketFull</name>
+	<description>A bucketlist app that allows you to create and maintain your bucket lists.</description>
+	<author href="https://github.com/karancan">Karan Khiani</author>
+	<icon src="img\icon.png" />
+	<rim:splash src="img\splash.png"/>
+	<rim:orientation mode="potrait"/>
+	<rim:permissions>
+		<rim:permit>use_camera</rim:permit>
+		<rim:permit>bbm_conect</rim:permit>
+	</rim:permissions>
+	<content src="index.htm" />
+	<feature id="blackberry.ui.dialog"/>
+	<feature id="blackberry.identity" />
+	<feature id="blackberry.app" />
 </widget>
