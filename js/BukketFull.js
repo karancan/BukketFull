@@ -10,6 +10,8 @@ function selectedItemReset(){
 	selectedItem.id = "";
 	selectedItem.title = "";
 	selectedItem.status = "";
+	selectedItem.image_path = "";
+	selectedItem.geolocation = "";
 }
 
 //An error callback function- used for troubleshooting
@@ -26,14 +28,14 @@ dbSuccess = function(tx, e) {
 function initDB(){
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
 	db.transaction(function (tx) {
-		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER)', [], dbSuccess, dbError);
-		//clearAllItems(); //This line will be commented out unless we are testing and want to clear the table of items
+		tx.executeSql('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, status INTEGER, image_path TEXT, geolocation TEXT)', [], dbSuccess, dbError);
+		//dropTable(); //This line will be commented out unless we are testing and want to drop the entire table
 		listItems();
 	});
 }
 
 //Function that clears the existing items table- used for testing
-function clearAllItems(){
+function dropTable(){
 	db.transaction(function (tx) {
 		tx.executeSql('DROP TABLE items', [], dbSuccess, dbError);
 	});
@@ -58,12 +60,12 @@ function listItems(){
 					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
 						count_incomplete ++; 
-						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 22 ? (results.rows.item(i).title).substring(0, 22) + "..." : results.rows.item(i).title) + '</li>';
+						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 17 ? (results.rows.item(i).title).substring(0, 17) + "..." : results.rows.item(i).title) + '</li>';
 					}
 					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
 						count_complete ++;
-						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 22 ? (results.rows.item(i).title).substring(0, 22) + "..." : results.rows.item(i).title) + '</li>';
+						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 17 ? (results.rows.item(i).title).substring(0, 17) + "..." : results.rows.item(i).title) + '</li>';
 					}
 				}
 				//Prepare the end of list markup and append it to the body
@@ -101,6 +103,8 @@ $(".item-selector").live('click',function() {
 		tx.executeSql('SELECT * FROM items WHERE id=?', [selectedItem.id], function (tx, results) {
 			selectedItem.title = results.rows.item(0).title;
 			selectedItem.status = results.rows.item(0).status;
+			selectedItem.image_path = results.rows.item(0).image_path;
+			selectedItem.geolocation = results.rows.item(0).geolocation
 			$('#bubble').html(selectedItem.title);
 			$.mobile.changePage( "view.htm", { transition: "flip", type: "get"} );
 		}, dbError);	
