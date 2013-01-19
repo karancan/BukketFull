@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:rim="http://www.blackberry.com/ns/widgets" id="bbUISamples" version="0.9.1.1" rim:header="RIM-Widget:rim/widget" xmlns="http://www.w3.org/ns/widgets">
-	<rim:navigation mode="focus" />
 	<name>BukketFull</name>
 	<description>A bucketlist app that allows you to create and maintain your bucket lists.</description>
 	<author href="https://github.com/karancan">Karan Khiani</author>
@@ -10,6 +9,7 @@
 	<rim:permissions>
 		<rim:permit>use_camera</rim:permit>
 		<rim:permit>bbm_conect</rim:permit>
+		<rim:permit>access_shared</rim:permit>
 	</rim:permissions>
 	<content src="index.htm" />
 	<feature id="blackberry.ui.dialog"/>
