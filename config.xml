@@ -14,7 +14,9 @@
 	<content src="index.htm" />
 	<feature id="blackberry.ui.dialog"/>
 	<feature id="blackberry.identity" />
-	<feature id="blackberry.app" />
+	<feature id="blackberry.app">
+		<param name="orientation" value="portrait" />
+	</feature>
 	<feature id="blackberry.invoke" />
 	<feature id="blackberry.invoke.card" />
 </widget>
