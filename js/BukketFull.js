@@ -60,12 +60,12 @@ function listItems(){
 					//Prepare the list of incomplete items
 					if (results.rows.item(i).status == "0"){
 						count_incomplete ++; 
-						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 17 ? (results.rows.item(i).title).substring(0, 17) + "..." : results.rows.item(i).title) + '</li>';
+						body_content_incomplete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 21 ? (results.rows.item(i).title).substring(0, 21) + "..." : results.rows.item(i).title) + '</li>';
 					}
 					//Prepare the list of completed items
 					if (results.rows.item(i).status == "1"){
 						count_complete ++;
-						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 17 ? (results.rows.item(i).title).substring(0, 17) + "..." : results.rows.item(i).title) + '</li>';
+						body_content_complete += '<li class="item-selector" name="' + results.rows.item(i).id + '"><img src="img/photo.png" alt="list thumbnail">' + ((results.rows.item(i).title).length > 21 ? (results.rows.item(i).title).substring(0, 21) + "..." : results.rows.item(i).title) + '</li>';
 					}
 				}
 				//Prepare the end of list markup and append it to the body
@@ -170,6 +170,28 @@ $("#confirm-add").live('click',function() {
 		listItems();
 		viewListItems();
 	});
+});
+
+//Function that runs when the user is adding an item to the bucket list
+$("#image-gallery").live('click',function() {
+	var details = {
+          mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+          type: [blackberry.invoke.card.FILEPICKER_TYPE_PICTURE]
+    };
+	blackberry.invoke.card.invokeFilePicker(details, function (path) {
+			alert("saved "+ path);
+		},
+        function (reason) {
+			alert("cancelled " + reason);
+        },
+        function (error) {
+            if (error) {
+                alert("invoke error "+ error);
+            } else {
+                console.log("invoke success " );
+            }
+        }
+    ); 
 });
 
 //Function that gives the user random suggestions for bucket list items to add

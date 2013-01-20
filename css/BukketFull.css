@@ -56,7 +56,7 @@ p#bubble{
 	padding: 15px;
 	margin: 0.5em;
 	color: white;
-	font-size: 5.5em;
+	font-size: 6em;
 	font-family: "Slate Pro",Slate,"Myriad Pro","BBAlpha Sans",Helvetica ;
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#00e400), to(#009800)) !important;
 	text-shadow: 0px 0px 3px rgba(150, 150, 150, 1);
