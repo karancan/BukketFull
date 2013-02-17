@@ -14,16 +14,26 @@ function selectedItemReset(){
 	selectedItem.geolocation = "";
 }
 
-//An error callback function- used for troubleshooting
+//An database error callback function- used for troubleshooting
 dbError = function(tx, e) {
 	console.log("DB Transaction ERROR: " + e.message);
 }
 
-//A success callback function- used for troubleshooting
+//A database success callback function- used for troubleshooting
 dbSuccess = function(tx, e) {
 	console.log("DB Transaction Success: " + e.message);
 }
-		
+
+//An invoke success callback function- used for troubleshooting
+invokeSuccess = function() {
+	console.log("Invocation successfull");
+}
+
+//An invoke error callback function- used for troubleshooting
+invokeError = function(error) {
+	console.log("Invocation error: " + error);
+}
+
 //Function called when the body loads- deals with main DB connection
 function initDB(){
 	db = openDatabase('bukketfull', '1.0', 'DB used by the BukketFull app', 2 * 1024 * 1024);
@@ -140,6 +150,26 @@ $('#selected-item-mark-incomplete').live('click',function() {
 		$('#selected-item-mark-complete').fadeIn();
 		listItems();
 	});
+});
+
+//Function that is run when the user chooses to share the selected item on Facebook
+$('#selected-item-share-facebook').live('click',function() {
+	blackberry.invoke.invoke({
+        target: "Facebook",
+        action: "bb.action.SHARE",
+        type: "text/plain",
+        data: "I have \"" + selectedItem.title + "\" on my bucket list. Have you created your bucket list yet?"
+    }, invokeSuccess, invokeError);
+});
+
+//Function that is run when the user chooses to share the selected item on Twitter
+$('#selected-item-share-twitter').live('click',function() {
+	blackberry.invoke.invoke({
+        target: "Twitter",
+        action: "bb.action.SHARE",
+        type: "text/plain",
+        data: "I have \"" + selectedItem.title + "\" on my bucket list. Have you created your bucket list yet?"
+    }, invokeSuccess, invokeError);
 });
 
 //Function that is run when the user deletes the selected item
