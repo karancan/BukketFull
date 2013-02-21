@@ -4,7 +4,6 @@
 	<description>A bucketlist app that allows you to create and maintain your bucket lists.</description>
 	<author href="https://github.com/karancan">Karan Khiani</author>
 	<icon src="img\icon.png" />
-	<rim:splash src="img\splash.png"/>
 	<rim:orientation mode="potrait"/>
 	<rim:permissions>
 		<rim:permit>use_camera</rim:permit>
