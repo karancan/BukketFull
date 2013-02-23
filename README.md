@@ -1,10 +1,5 @@
 BukketFull
 ==========
-_**Current status: in development**_
- 
-_**Version 1.0: expected Jan. 21, 2013**_
-
-_**Version 1.1: expected Feb. 21, 2013**_
 
 ## Description
 
@@ -12,7 +7,7 @@ A "bucket list" is a list of things that one would hope to do before they die. B
 
 ## Credit
 
-Thanks to [http://www.iconfinder.com/icondetails/83180/128/coffee_facebook_mug_icon](www.iconbug.com) for the logo.
+Thanks to [http://www.iconfinder.com/icondetails/83180/128/coffee_facebook_mug_icon](http://www.iconbug.com) for the logo.
 
 ## Tested On
 
