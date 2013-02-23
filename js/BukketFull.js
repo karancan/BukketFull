@@ -4,7 +4,6 @@
 
 var db;
 selectedItem = new Object();
-document.addEventListener("webworksready", start());
 
 //A function that clears the selectedItem object
 function selectedItemReset(){
@@ -15,15 +14,25 @@ function selectedItemReset(){
 	selectedItem.geolocation = "";
 }
 
-//An error callback function- used for troubleshooting
+//A database error callback function- used for troubleshooting
 dbError = function(tx, e) {
 	console.log("DB Transaction ERROR: " + e.message);
 }
 
-//A success callback function- used for troubleshooting
+//A database success callback function- used for troubleshooting
 dbSuccess = function(tx, e) {
 	console.log("DB Transaction Success: " + e.message);
 }
+
+//An invoke error callback function- used for troubleshooting
+invokeError = function(error) {
+	console.log("Invocation ERROR: " + error );
+}
+
+//An invoke success callback function- used for troubleshooting
+invokeSuccess = function() {
+	console.log("Invocation Success");
+}		
 		
 //Function called when the body loads- deals with main DB connection
 function initDB(){
@@ -156,6 +165,26 @@ $('#selected-item-delete').live('click',function() {
 	}
 });
 
+//Function that runs when the user wants to share the item on facebook
+$('#selected-item-share-facebook').live('click', function() {
+	blackberry.invoke.invoke({
+        target: "Facebook",
+        action: "bb.action.SHARE",
+        type: "text/plain",
+        data: "I have \"" + selectedItem.title + "\" on my bucket list on my BlackBerry 10 phone :)"
+    }, invokeSuccess, invokeError);
+});
+
+//Function that runs when the user wants to share the item on twitter
+$('#selected-item-share-twitter').live('click', function() {
+	blackberry.invoke.invoke({
+        target: "Twitter",
+        action: "bb.action.SHARE",
+        type: "text/plain",
+        data: "I have \"" + selectedItem.title + "\" on my bucket list on my BlackBerry 10 phone :)"
+    }, invokeSuccess, invokeError);
+});
+
 //Function that runs when the user is adding an item to the bucket list
 $("#confirm-add").live('click',function() {
 	
@@ -175,7 +204,7 @@ $("#confirm-add").live('click',function() {
 
 //Function that runs when the user is adding an item to the bucket list
 $("#image-gallery").live('click',function() {
-	var details = {
+	/*var details = {
           mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
           type: [blackberry.invoke.card.FILEPICKER_TYPE_PICTURE]
     };
@@ -192,7 +221,7 @@ $("#image-gallery").live('click',function() {
                 console.log("invoke success " );
             }
         }
-    ); 
+    ); */
 });
 
 //Function that gives the user random suggestions for bucket list items to add
